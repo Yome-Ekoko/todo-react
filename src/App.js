@@ -15,7 +15,13 @@ function App() {
   },[])
 
   useEffect(()=>{
-    const filterHandler=()=>{
+    saveLocalTodos();
+    filterHandler();
+  },
+   // eslint-disable-next-line
+  [todos,status]);
+
+   const filterHandler=()=>{
       switch(status){
         case "completed":
         setFilteredTodos(todos.filter((todo)=> todo.completed === true))
@@ -31,7 +37,6 @@ function App() {
     const saveLocalTodos = ()=>{
         localStorage.setItem("todos", JSON.stringify(todos));
     };  
-  },[todos,status]);
 
   
   const getLocalTodos=()=>{
